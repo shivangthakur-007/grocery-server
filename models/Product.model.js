@@ -26,7 +26,7 @@ const ProductSchema = new Schema({
   review: { type: Number, default: 0 },
   Role: { type: String, enum: ["USER", "ADMIN"], default: "ADMIN" },
   price: { type: Number, default: 0 },
-});
+  });
 
 const ProductStore = model("Productstore", ProductSchema);
 

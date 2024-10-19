@@ -3,6 +3,7 @@ import cors from "cors";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import productRouter from "./routers/Product.router.js";
+import Blogsrouter from "./routers/Blogs.router.js";
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(cookieParser());
 app.use(morgan("dev"));
 
 app.use("/api/vi/product", productRouter);
+app.use("/api/vi/blogs", Blogsrouter);
 
 app.get("/", (req, res) => {
   res.send("hello world");

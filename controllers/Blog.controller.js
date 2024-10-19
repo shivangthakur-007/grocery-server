@@ -1,64 +1,60 @@
+import BlogStories from "../models/Blog.model.js";
 import appError from "../utils/error.utils.js";
 import cloudinary from "cloudinary";
-import fs from "fs/promises";
-import ProductStore from "../models/Product.model.js";
 
-const getProducts = async function (req, res, next) {
+const getBlogs = async function (req, res, next) {
   try {
-    const products = await ProductStore.find({});
+    const Blogs = await BlogStories.find({});
     res.status(200).json({
       success: true,
       message: "All Products",
-      products,
+      Blogs,
     });
   } catch (e) {
-    return next(new appError(e.message, 400));
+    return next(new appError(e.message), 400);
   }
 };
 
-const createProducts = async function (req, res, next) {
+const createBlogs = async function (req, res, next) {
   try {
-    const { category, name, review, Role, price } = req.body;
-
-    const product = await ProductStore.create({
+    const { date, headings, tags } = req.body;
+    const Blogs = await BlogStories.create({
+      date,
       image: {
         public_id: "Dummy",
         secure_url: "Dummy",
       },
-      category,
-      name,
-      review,
-      Role,
-      price,
+      headings,
+      tags,
+      role,
     });
 
-    if (!product) {
+    if (!Blogs) {
       return next(new appError("Could not be created, Please try again", 500));
     }
     if (req.file) {
       try {
         const result = await cloudinary.v2.uploader.upload(req.file.path, {
-          folder: "estore",
+          folder: "blogstore",
         });
         if (result) {
-          product.image.public_id = result.public_id;
-          product.image.secure_url = result.secure_url;
+          Blogs.image.public_id = result.image.public_id;
+          Blogs.image.secure_url = result.image.secure_url;
         }
         fs.rm(`uploads/${req.file.filename}`);
       } catch (e) {
         return next(new appError(e.message, 400));
       }
     }
-    await product.save();
-
+    await Blogs.save();
     res.status(200).json({
       success: true,
-      message: "Product created Successfully",
-      product,
+      message: "Blogs created Successfully",
+      Blogs,
     });
   } catch (e) {
     return next(new appError(e.message, 400));
   }
 };
 
-export { createProducts, getProducts};
+export { getBlogs, createBlogs };
