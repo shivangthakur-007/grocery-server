@@ -13,7 +13,7 @@ app.use(cors({ "Access-Control-Allow-Origin": "*" }));
 app.use(cookieParser());
 app.use(morgan("dev"));
 
-app.use("/api/vi/product", productRouter);
+// app.use("/api/vi/product", productRouter);
 
 app.get("/", (req, res) => {
   res.send("hello world");
