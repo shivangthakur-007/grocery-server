@@ -1,7 +1,7 @@
-import ProductStore from "../models/productmodel.js";
 import appError from "../utils/error.Utils.js";
 import cloudinary from "cloudinary";
 import fs from "fs/promises";
+import ProductStore from "../models/Product.model.js";
 
 const getProducts = async function (req, res, next) {
   try {
@@ -61,4 +61,4 @@ const createProducts = async function (req, res, next) {
   }
 };
 
-export { createProducts, getProducts };
+export { createProducts, getProducts};

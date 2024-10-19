@@ -29,4 +29,5 @@ const ProductSchema = new Schema({
 });
 
 const ProductStore = model("Productstore", ProductSchema);
+
 export default ProductStore;

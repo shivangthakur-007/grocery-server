@@ -6,8 +6,11 @@ import {
   getProducts,
 } from "../controllers/productController.js";
 
-const router = Router();
+const productRouter = Router();
 
-router.route("/").get(getProducts).post(upload.single("image"), createProducts);
+productRouter
+  .route("/")
+  .get(getProducts)
+  .post(upload.single("image"), createProducts);
 
-export default router;
+export default productRouter;
