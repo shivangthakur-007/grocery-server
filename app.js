@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors({ "Access-Control-Allow-Origin": "*" }));
 
 app.use(cookieParser());
-app.use(morgan("dev"));
+app.use(morgan("dev")); 
 
 app.use("/api/vi/product", productRouter);
 app.use("/api/vi/blogs", Blogsrouter);

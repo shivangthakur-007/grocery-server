@@ -1,7 +1,7 @@
-const errorMiddleware = (err, _req, _res) => {
+const errorMiddleware = (err, _req, res) => {
   err.statuscode = err.statuscode || 500;
   err.message = err.message || "Something Went Wrong";
-  _res.statuscode(err.statuscode).json({
+  res.statuscode(err.statuscode).json({
     success: false,
     message: err.message,
     stack: err.stack,
