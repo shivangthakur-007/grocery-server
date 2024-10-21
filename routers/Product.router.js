@@ -13,5 +13,4 @@ productRouter
   .get(getProducts)
   .post(upload.single("image"), createProducts);
 
-  
 export default productRouter;
