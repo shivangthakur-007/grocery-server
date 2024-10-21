@@ -11,6 +11,7 @@ const getProducts = async function (req, res, next) {
       message: "All Products",
       products,
     });
+    
   } catch (e) {
     return next(new appError(e.message, 400));
   }
